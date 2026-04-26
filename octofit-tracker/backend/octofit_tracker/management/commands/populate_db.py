@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
-from djongo import models
 
 from octofit_tracker.models import Team, Activity, Leaderboard, Workout
 
@@ -28,8 +27,8 @@ class Command(BaseCommand):
                 obj.delete()
 
         # Teams
-        marvel = Team.objects.create(name='Marvel')
-        dc = Team.objects.create(name='DC')
+        marvel = Team.objects.create(name='Team Marvel')
+        dc = Team.objects.create(name='Team DC')
 
         # Users
         tony = User.objects.create_user(username='ironman', email='tony@marvel.com', password='pass', team=marvel)
