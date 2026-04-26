@@ -6,6 +6,8 @@ import Teams from './components/Teams';
 import Users from './components/Users';
 import Workouts from './components/Workouts';
 
+const logoSrc = `${process.env.PUBLIC_URL}/octofitapp-small.svg`;
+
 const navLinkClass = ({ isActive }) =>
   `nav-link ${isActive ? 'active fw-semibold' : ''}`;
 
@@ -13,9 +15,14 @@ function App() {
   return (
     <div className="App d-flex flex-column min-vh-100">
       <nav className="navbar navbar-expand-lg navbar-dark octo-navbar shadow-sm">
-        <div className="container-fluid px-3 px-lg-4">
-          <NavLink className="navbar-brand fw-semibold text-decoration-none" to="/activities">
-            Octofit Tracker
+        <div className="container-fluid px-3 px-lg-4 d-flex flex-wrap align-items-center">
+          <NavLink
+            className="navbar-brand octo-brand me-auto py-0"
+            to="/activities"
+            aria-label="Octofit Tracker"
+          >
+            <img src={logoSrc} alt="" className="octo-brand-logo" width={160} height={44} />
+            <span className="octo-brand-text d-none d-sm-inline">Tracker</span>
           </NavLink>
           <button
             className="navbar-toggler"
