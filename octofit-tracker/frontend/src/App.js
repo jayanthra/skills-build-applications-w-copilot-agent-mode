@@ -12,9 +12,11 @@ const navLinkClass = ({ isActive }) =>
 function App() {
   return (
     <div className="App d-flex flex-column min-vh-100">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div className="container-fluid">
-          <span className="navbar-brand mb-0 h1">Octofit Tracker</span>
+      <nav className="navbar navbar-expand-lg navbar-dark octo-navbar shadow-sm">
+        <div className="container-fluid px-3 px-lg-4">
+          <NavLink className="navbar-brand fw-semibold text-decoration-none" to="/activities">
+            Octofit Tracker
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -27,7 +29,7 @@ function App() {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="mainNav">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
               <li className="nav-item">
                 <NavLink className={navLinkClass} to="/activities" end>
                   Activities
@@ -58,7 +60,7 @@ function App() {
         </div>
       </nav>
 
-      <main className="container py-4 flex-grow-1">
+      <main className="container py-4 flex-grow-1 px-3 px-lg-4">
         <Routes>
           <Route path="/" element={<Navigate to="/activities" replace />} />
           <Route path="/activities" element={<Activities />} />
@@ -68,6 +70,26 @@ function App() {
           <Route path="/workouts" element={<Workouts />} />
         </Routes>
       </main>
+
+      <footer className="octo-footer mt-auto py-3">
+        <div className="container px-3 px-lg-4">
+          <div className="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 small text-muted">
+            <span className="text-body-secondary">Fitness data from Django REST Framework</span>
+            <ul className="nav mb-0 justify-content-sm-end">
+              <li className="nav-item">
+                <a className="nav-link link-secondary py-0" href="https://react.dev" target="_blank" rel="noopener noreferrer">
+                  React
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link link-secondary py-0" href="https://getbootstrap.com" target="_blank" rel="noopener noreferrer">
+                  Bootstrap
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

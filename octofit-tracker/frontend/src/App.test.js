@@ -21,7 +21,7 @@ test('renders navigation and default activities view', async () => {
       <App />
     </MemoryRouter>
   );
-  expect(screen.getByText(/octofit tracker/i)).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /^octofit tracker$/i })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: /teams/i })).toBeInTheDocument();
   await waitFor(() => {
     expect(screen.getByRole('heading', { name: /activities/i })).toBeInTheDocument();
