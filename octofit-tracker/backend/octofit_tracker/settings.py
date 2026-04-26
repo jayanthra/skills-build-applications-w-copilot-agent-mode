@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from corsheaders.defaults import default_headers, default_methods
 
@@ -27,8 +28,17 @@ SECRET_KEY = 'django-insecure-*gt@zs+r62h7xq6f5ym1*c4arr1gx1z87&ut_j5c19^i^h9$+4
 DEBUG = True
 
 
-# Allow all hosts
-ALLOWED_HOSTS = ['*']
+# Codespaces + localhost host handling
+CODESPACE_NAME = os.environ.get("CODESPACE_NAME", "").strip()
+CODESPACE_HOST = f"{CODESPACE_NAME}-8000.app.github.dev" if CODESPACE_NAME else ""
+
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]
+if CODESPACE_HOST:
+    ALLOWED_HOSTS.append(CODESPACE_HOST)
+
+# Ensure Django respects HTTPS/host headers from reverse proxies (e.g. Codespaces)
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 
 # Application definition
